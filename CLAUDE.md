@@ -15,6 +15,17 @@ Remote: https://github.com/minhhung19872002/BlueChat (branch `main`). Commit per
 - The product owner is writing a **separate BlueID service**. Do **not** use `BlueMail.Identity` and do not build a
   temporary login in BlueChat. Requirements for BlueID are in docs/00 Z1 (B1–B9). Wait for the owner to say it is ready.
 
+## Teams parity (docs/00 Z9)
+- Manual comparison in the **Teams desktop app** through agent-desktop, on the account the owner provided, **only in
+  the chat "Just me"**. Never message, invite or open any other chat/team. Observe as a user only.
+- Screenshots of the full window stay in the scratchpad and are deleted after use; images committed to the repo are
+  cropped to the feature under comparison, with no names/messages/notifications of other people.
+- Multi-person features: write the step-by-step script and ask the owner to play the second person.
+
+## Phase order
+- Phase 1–4 wait for BlueID. Phase 5 media libraries are done ahead (owner's approval 2026-11-25) up to the browser
+  loopback test. No SFU and no ticket-based signalling until BlueID exists.
+
 ## Dev environment (Windows)
 - OpenSSL for tests on Windows: `BC_OPENSSL_DIR="C:/Program Files/Git/mingw64/bin"` (Git for Windows ships 3.2.x).
 - Git Bash: prefix docker commands with container paths with `MSYS_NO_PATHCONV=1` (run-z4.sh exports it).

@@ -9,15 +9,15 @@ Ngày lập: 2026-11-25 (Phase 0). Đặc tả: `PROMPT_BlueChat_ClaudeCode.md`.
 
 | # | Việc | Tình trạng |
 |---|---|---|
-| Z1 | BlueID | **Đang chờ** — chủ sản phẩm tự viết BlueID riêng (2026-11-25); yêu cầu của BlueChat ở mục Z1 dưới đây |
-| Z2 | Hạ tầng mạng | **[CẦN CHỦ SẢN PHẨM]** — chưa có thông tin IP/cổng/băng thông |
+| Z1 | BlueID | **Đang chờ** — BlueID được xây ở kho riêng; hợp đồng tích hợp (`docs/05-hop-dong-tich-hop.md` của BlueID) sẽ được đối chiếu với B1–B9 khi có |
+| Z2 | Hạ tầng mạng | **Chưa quyết** (chủ sản phẩm, 2026-11-25) — mọi thử nghiệm media chạy trên máy dev |
 | Z3 | DTLS qua OpenSSL | **Xong** — Chromium 159 và Firefox 159, trên Windows (OpenSSL 3.2.3) và Linux (OpenSSL 3.0.13) |
 | Z4 | Khung kiểm thử media | **Xong** — Pion, aiortc, coturn, tshark, netem chạy; Pion và aiortc bắt tay được với nguyên mẫu (mục "Z4 — kết quả") |
 | Z5 | Kho S3 | **Xong** — Garage v2.5.0 (giống BlueMail) |
 | Z6 | Giới hạn của Teams | **Xong** — bảng trong `doi-chieu-teams.md` (trang đọc 2026-11-25) |
 | Z7 | Ước lượng tải | **Xong (ước lượng, chưa đo)** — sẽ đo lại ở Phase 6 và 12 |
 | Z8 | Khung bảng đối chiếu | **Xong** — `doi-chieu-teams.md`, mọi dòng `Chưa làm` / `Ngoài phạm vi` |
-| Z9 | Tài khoản Teams thử nghiệm | **[CẦN CHỦ SẢN PHẨM]** — chưa đặt `BC_TEAMS_TEST_USERS`, `BC_TEAMS_TEST_TENANT` |
+| Z9 | Đối chiếu Teams | **Thay quy trình** — đối chiếu tay trên Teams desktop qua điều khiển máy tính, chỉ trong chat "Just me" (mục Z9) |
 
 ---
 
@@ -26,12 +26,14 @@ Ngày lập: 2026-11-25 (Phase 0). Đặc tả: `PROMPT_BlueChat_ClaudeCode.md`.
 **Bối cảnh.** Đặc tả (mục 2.1) yêu cầu BlueChat không tự quản người dùng. Trên máy dev, BlueID đang nằm trong
 BlueMail (`BlueMail.Identity`, OpenIddict, chung CSDL với BlueMail, chỉ có client `bluemail-web`).
 
-**Quyết định (chủ sản phẩm, 2026-11-25).** **Không** dùng BlueID của BlueMail. Chủ sản phẩm viết một ứng dụng
-BlueID riêng; khi xong sẽ báo để BlueChat nối vào. BlueChat **không** dựng bản đăng nhập tạm (đặc tả 2.1).
+**Quyết định (chủ sản phẩm, 2026-11-25).** **Không** dùng và không sửa BlueID trong BlueMail. BlueID được xây ở kho
+riêng; phiên làm BlueID đối chiếu hợp đồng tích hợp với bảng B1–B9 dưới đây. Khi BlueID có
+`docs/05-hop-dong-tich-hop.md`, chủ sản phẩm gửi sang để BlueChat đối chiếu lại B1–B9. BlueChat **không** dựng bản
+đăng nhập tạm (đặc tả 2.1).
 
-**Hệ quả.** Phase 1 (đăng nhập, mở ứng dụng) chờ BlueID. Đặc tả bắt làm tuần tự, không nhảy phase; trong lúc chờ,
-**đề xuất** làm trước các thư viện media độc lập của Phase 5 (SDP, STUN/ICE, DTLS-SRTP, RTP/RTCP, TURN) vì chúng không
-phụ thuộc BlueID — **[CẦN CHỦ SẢN PHẨM]** đồng ý trước khi bắt đầu.
+**Hệ quả.** Phase 1–4 chờ BlueID. Chủ sản phẩm đồng ý (2026-11-25) làm trước **thư viện media của Phase 5** (SDP,
+STUN/ICE-lite/ICE-TCP, DTLS-SRTP, RTP/RTCP, TURN) tới phép thử vòng lặp (trình duyệt gửi và nhận lại chính luồng của
+mình), vì chúng không cần đăng nhập. **Chưa** làm SFU hay báo hiệu có vé vào họp (cần BlueID).
 
 **BlueChat cần BlueID cung cấp** (để chủ sản phẩm đối chiếu khi viết BlueID):
 
@@ -49,7 +51,10 @@ phụ thuộc BlueID — **[CẦN CHỦ SẢN PHẨM]** đồng ý trước khi 
 
 ---
 
-## Z2. Hạ tầng mạng — **[CẦN CHỦ SẢN PHẨM]**
+## Z2. Hạ tầng mạng — **chưa quyết**
+
+Chủ sản phẩm (2026-11-25): để sau, chưa quyết. Mọi thử nghiệm media chạy trên máy dev; không tự chọn hạ tầng thay chủ
+sản phẩm. Những điều cần biết khi quyết (ghi lại để không quên):
 
 Cần biết trước Phase 5–6:
 
@@ -60,7 +65,6 @@ Cần biết trước Phase 5–6:
 - Băng thông ra và giá theo GB: cuộc họp 50 người có video lưới ≈ 50 × (0,3–1,5 Mbps) chiều xuống mỗi người, tức
   vài chục Mbps đến hàng trăm Mbps mỗi cuộc họp.
 
-Không có số liệu → mục này chưa đạt; đã báo chủ sản phẩm.
 
 ---
 
@@ -166,12 +170,26 @@ số đo ở Phase 12 cho thấy hạ tầng không gánh nổi (ghi lại ở �
 
 ---
 
-## Z9. Tài khoản Teams thử nghiệm — **[CẦN CHỦ SẢN PHẨM]**
+## Z9. Đối chiếu Teams — đối chiếu tay trên Teams desktop
 
-Ngày 2026-11-25: chưa có `BC_TEAMS_TEST_USERS` và `BC_TEAMS_TEST_TENANT` trong môi trường. Cho tới khi có, mọi dòng
-đối chiếu ghi **"chỉ đối chiếu theo tài liệu"** (đặc tả 3.1). Cần: ít nhất 3 tài khoản trong **tenant thử nghiệm
-riêng** (một người tổ chức, hai người tham gia), có `totp_secret` nếu bật 2FA. Nhập vào cài đặt môi trường, không
-nhập vào kho mã.
+**Quyết định (chủ sản phẩm, 2026-11-25).** Không dùng biến môi trường `BC_TEAMS_TEST_USERS` nữa (bỏ phần Playwright
+đăng nhập Teams web của đặc tả 3.1). Chủ sản phẩm mở sẵn ứng dụng Teams desktop đã đăng nhập; Claude Code xem và thao
+tác qua điều khiển máy tính (agent-desktop). Chủ sản phẩm cho dùng tài khoản đang đăng nhập (không phải tenant thử
+nghiệm riêng — chủ sản phẩm đã chấp nhận) với phạm vi thao tác **chỉ trong chat "Just me"** (chat với chính mình).
+
+Quy tắc:
+
+- Chỉ thao tác trong chat "Just me". Không nhắn, không mời ai, không mở chat hay nhóm khác.
+- Chỉ quan sát như người dùng: không đọc mã, không chặn lưu lượng mạng, không gọi API nội bộ của Teams.
+- Ảnh chụp đưa vào kho mã cắt chỉ còn phần chức năng đang so; không để lộ tên, tin nhắn, thông báo của người khác.
+  Ảnh chụp toàn cửa sổ chỉ nằm ở thư mục tạm và xoá sau khi dùng.
+- Mỗi dòng đối chiếu ghi "đối chiếu tay trên Teams desktop, tài khoản do chủ sản phẩm cấp, chat Just me, ngày …";
+  chức năng chưa xem được trên Teams thật ghi "chỉ đối chiếu theo tài liệu".
+- Chức năng cần nhiều người (gọi, chat nhóm, phòng chờ, vai trò): ghi kịch bản từng bước và báo chủ sản phẩm; chủ sản
+  phẩm đóng vai người thứ hai.
+- Không đối chiếu được (bị chặn thao tác, sai tài khoản…) thì báo lý do cụ thể, không đoán hành vi của Teams.
+
+Kiểm tài khoản (2026-11-25): cửa sổ Teams desktop mở, đã đăng nhập; chủ sản phẩm xác nhận dùng tài khoản này.
 
 ---
 

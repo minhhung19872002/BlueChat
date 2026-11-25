@@ -8,8 +8,10 @@ Teams parity table: `docs/doi-chieu-teams.md`.
 
 | Phase | Content | Status |
 |---|---|---|
-| 0 | Test infrastructure and decisions (Z1–Z9) | in progress: Z3–Z8 done; Z1 waits for the separate BlueID service; Z2 and Z9 need the product owner |
-| 1–14 | | not started (Phase 1 needs BlueID) |
+| 0 | Test infrastructure and decisions (Z1–Z9) | Z3–Z9 done; Z1 waits for the separate BlueID service; Z2 (network) not decided by the owner yet |
+| 1–4 | Foundation, chat, teams/channels, activity/search/files | **waiting for BlueID** |
+| 5 | Media libraries: SDP, STUN/ICE-lite/ICE-TCP, DTLS-SRTP, RTP/RTCP, TURN — up to the browser loopback test | **in progress, ahead of Phase 1–4** with the owner's approval (2026-11-25): no login needed. SFU and ticket-based signalling stay for Phase 6 (need BlueID) |
+| 6–14 | | not started |
 
 ## Layout
 

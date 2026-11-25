@@ -5,8 +5,10 @@ hành vi, so từng dòng, dùng thử Teams thật nếu có tài khoản thử
 
 Trạng thái: `Chưa làm` / `Đang làm` / `Xong` / `Khác có chủ ý` (ghi lý do) / `Ngoài phạm vi` (đặc tả mục 11).
 
-**Tài khoản Teams thử nghiệm (Z9):** chưa có (2026-11-25), nên mọi dòng hiện **chỉ đối chiếu theo tài liệu**.
-Tenant thử nghiệm đã dùng: —
+**Cách đối chiếu (docs/00 Z9, quyết định 2026-11-25):** đối chiếu tay trên **Teams desktop**, tài khoản do chủ sản phẩm
+cấp, chỉ thao tác trong chat **"Just me"**. Dòng đã xem trên Teams thật ghi "đối chiếu tay trên Teams desktop, tài
+khoản do chủ sản phẩm cấp, chat Just me, ngày …"; dòng chưa xem được ghi "chỉ đối chiếu theo tài liệu". Chức năng cần
+nhiều người: ghi kịch bản, chủ sản phẩm đóng vai người thứ hai.
 
 ---
 
@@ -38,7 +40,7 @@ Nguồn: <https://learn.microsoft.com/en-us/microsoftteams/limits-specifications
 | Thành viên gán cho một nhãn | 200 | 200 | |
 | Nhãn gán cho một người mỗi nhóm | 25 | 25 | |
 | Nhãn mặc định gợi ý mỗi nhóm | 25 | 25 | |
-| Tên kênh: ký tự cấm | `~ # % & * { } + / \ : < > ? \| ' " , ..`, mã 0x00–0x1F, 0x80–0x9F | Khác có chủ ý: chỉ cấm ký tự điều khiển và ký tự hướng (bidi) ẩn; các ký tự khác cho phép vì BlueChat không lưu kênh thành thư mục SharePoint | |
+| Tên kênh: ký tự cấm | `~ # % & * { } + / \ : < > ? \| ' " , ..`, mã 0x00–0x1F, 0x80–0x9F | **Khác có chủ ý** (chủ sản phẩm chấp nhận 2026-11-25): cho phép ký tự đặc biệt vì BlueChat không lưu kênh thành thư mục; **vẫn chặn** ký tự điều khiển (C0, C1, DEL), ký tự hướng ẩn (bidi), ký tự độ rộng 0, khoảng trắng đầu/cuối, và tên có ký tự đồng hình dễ giả dạng (trộn chữ viết theo Unicode TR39, ví dụ chữ Kirin trông như Latin) | |
 | Tên kênh: từ dành riêng | forms, CON, CONIN$, CONOUT$, PRN, AUX, NUL, COM1–9, LPT1–9, desktop.ini, _vti_; không bắt đầu bằng `_` hay `.`, không kết thúc bằng `.` | Khác có chủ ý: không cần (lý do như trên) | |
 
 ### Chat và tin nhắn
@@ -47,7 +49,7 @@ Nguồn: <https://learn.microsoft.com/en-us/microsoftteams/limits-specifications
 |---|---|---|---|
 | Người trong một chat (nhóm) | 250 | 250 | |
 | Thêm vào chat nhóm cùng lúc | 200 | 200 | |
-| Chat > 20 người thì tắt | trả lời tự động Outlook, lời nhắn trạng thái, đang gõ, gọi thoại/video, chia sẻ, đã xem, "Set Delivery Options" | Khác có chủ ý: giữ đang gõ và đã xem tới 250 người (Gateway gộp sự kiện); gọi từ chat như Teams (20) | |
+| Chat > 20 người thì tắt | trả lời tự động Outlook, lời nhắn trạng thái, đang gõ, gọi thoại/video, chia sẻ, đã xem, "Set Delivery Options" | **Khác có chủ ý** (chủ sản phẩm chấp nhận 2026-11-25): "đang gõ" và "đã xem" giữ tới **ngưỡng cấu hình được, mặc định 50 người**; nhiều người thì gộp hiển thị ("5 người đang gõ"); chốt mặc định sau phép thử tải Phase 12. Gọi từ chat như Teams (20) | |
 | Người trong cuộc gọi thoại/video từ chat | 20 | 20 (lớn hơn → chuyển thành cuộc họp) | |
 | Tệp đính kèm mỗi tin | 10 | 10 | |
 | Cỡ tệp trong chat | 100 MB | 100 MB (chính sách tenant đặt được cao hơn) | |
@@ -61,7 +63,7 @@ Nguồn: <https://learn.microsoft.com/en-us/microsoftteams/limits-specifications
 |---|---|---|---|
 | Người trong cuộc họp (chat + gọi vào) | 300 (Business Basic/Standard/Premium, Essentials, A1); tới 1 000 (E3/E5/A3/A5/G3/G5…) | 300 trên một nút SFU; 1 000 bằng ghép tầng (Phase 12) | |
 | Thời lượng cuộc họp/sự kiện | 30 giờ | 30 giờ | |
-| Bản ghi tối đa | 4 giờ hoặc 1,5 GB, rồi tự ghi tiếp tệp mới | Khác có chủ ý: ghi từng luồng; cắt đoạn mỗi 4 giờ, không giới hạn cỡ | |
+| Bản ghi tối đa | 4 giờ hoặc 1,5 GB, rồi tự ghi tiếp tệp mới | **Khác có chủ ý** (chủ sản phẩm chấp nhận 2026-11-25): ghi từng luồng, cắt đoạn mỗi 4 giờ; dung lượng **tính vào hạn mức lưu trữ của tenant** và theo **chính sách lưu giữ**; hết hạn mức thì dừng ghi và báo người tổ chức | |
 | Bản ghi không tải lên Stream giữ để tải về | 20 ngày | Theo chính sách lưu giữ của tenant (mặc định ≥ 20 ngày) | |
 | Phòng nhóm (breakout) | chỉ khi cuộc họp ≤ 1 000 người | ≤ 1 000 người | |
 | Hết hạn cuộc họp (bản xem trước) | một lần: 60 ngày sau giờ họp; Họp ngay: 60 ngày sau khi tạo liên kết; lặp có ngày kết thúc: 60 ngày sau lần cuối; lặp không kết thúc: 1 năm sau lần dùng cuối; vào/sửa trước hạn cộng 60 ngày (trừ Họp ngay) | Như Teams | |
