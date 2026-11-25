@@ -1,0 +1,30 @@
+# TURN interop rig (Phase 5, spec §6.6): BlueChat.Turn against coturn's turnutils_uclient / turnutils_peer.
+#   docker compose -f tests/interop/turn-compose.yml up -d
+#   sh tests/interop/run-turn.sh
+# Network 10.79.0.0/24 (10.78 is the DTLS rig, 10.77 BlueMail). TURN 10.79.0.10, tools 10.79.0.20.
+name: bluechat-turn-interop
+networks:
+  turn:
+    ipam:
+      config:
+        - subnet: 10.79.0.0/24
+services:
+  turn:
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    working_dir: /w
+    volumes:
+      - ../..:/src:ro
+    command: >
+      sh -c "mkdir -p /w/src /w/tools && cp /src/Directory.Build.props /src/Directory.Packages.props /w/
+      && cp -r /src/src/BlueChat.Media.Stun /src/src/BlueChat.Turn /w/src/ && cp -r /src/tools/TurnRunner /w/tools/
+      && rm -rf /w/src/*/bin /w/src/*/obj /w/tools/*/bin /w/tools/*/obj
+      && dotnet run --project tools/TurnRunner -- --listen 0.0.0.0 --relay-ip 10.79.0.10
+      --secret interop-secret --realm bluechat.test --allow 10.79.0.20/32 --ports 49152-49352"
+    networks:
+      turn:
+        ipv4_address: 10.79.0.10
+  tools:
+    image: bluechat/interop-tools:dev
+    networks:
+      turn:
+        ipv4_address: 10.79.0.20

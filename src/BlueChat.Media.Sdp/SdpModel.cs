@@ -157,8 +157,17 @@ public sealed class SdpMedia
 
     public List<SdpAttribute> OtherAttributes { get; } = [];
 
-    /// <summary>A port of 0 rejects or disables the section (RFC 8866 §5.14, RFC 8829 §5.3.1).</summary>
-    public bool IsRejected => Port == 0;
+    /// <summary>
+    /// RFC 9143 §7.5.3 <c>a=bundle-only</c>: the offerer wants this section only inside the BUNDLE group, so it carries
+    /// port 0 without being rejected (Firefox does this with bundlePolicy "max-bundle").
+    /// </summary>
+    public bool BundleOnly => OtherAttributes.Any(a => a.Name == "bundle-only");
+
+    /// <summary>
+    /// A port of 0 rejects or disables the section (RFC 8866 §5.14, RFC 8829 §5.3.1) — except a bundle-only section
+    /// (RFC 9143 §7.3.1).
+    /// </summary>
+    public bool IsRejected => Port == 0 && !BundleOnly;
 
     public SdpDirection EffectiveDirection => Direction ?? SdpDirection.SendRecv;
 

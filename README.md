@@ -10,16 +10,26 @@ Teams parity table: `docs/doi-chieu-teams.md`.
 |---|---|---|
 | 0 | Test infrastructure and decisions (Z1–Z9) | Z3–Z9 done; Z1 waits for the separate BlueID service; Z2 (network) not decided by the owner yet |
 | 1–4 | Foundation, chat, teams/channels, activity/search/files | **waiting for BlueID** |
-| 5 | Media libraries: SDP, STUN/ICE-lite/ICE-TCP, DTLS-SRTP, RTP/RTCP, TURN — up to the browser loopback test | **in progress, ahead of Phase 1–4** with the owner's approval (2026-11-25): no login needed. SFU and ticket-based signalling stay for Phase 6 (need BlueID) |
+| 5 | Media libraries: SDP, STUN/ICE-lite/ICE-TCP, DTLS-SRTP, RTP/RTCP, TURN — up to the browser loopback test | **done, ahead of Phase 1–4** with the owner's approval (2026-11-25). Chromium 159 and Firefox 159 receive their own audio/video back over UDP, ICE-TCP and across an ICE restart (docs/07). SFU and ticket-based signalling stay for Phase 6 (need BlueID) |
 | 6–14 | | not started |
 
 ## Layout
 
+- `src/BlueChat.Media.Sdp` — SDP parser/writer, ICE-lite JSEP answerer
+- `src/BlueChat.Media.Stun` — STUN codec
+- `src/BlueChat.Media.Ice` — ICE-lite, shared-port mux, ICE-TCP framing, RFC 7983 demux
 - `src/BlueChat.Media.Dtls` — DTLS-SRTP through the OS OpenSSL 3.x (P/Invoke, memory BIOs)
+- `src/BlueChat.Media.Srtp` — SRTP/SRTCP (AES-GCM, AES-CM + HMAC-SHA1)
+- `src/BlueChat.Media.Rtp` — RTP/RTCP, header extensions, transport-cc, VP8/VP9/H.264/AV1/Opus descriptors
+- `src/BlueChat.Media.Transport` — media node sockets: one UDP + one ICE-TCP port, ICE → DTLS → SRTP per browser
+- `src/BlueChat.Turn` — TURN server (RFC 8656) with allow-list relay policy
+- `tools/MediaLoopback` — Phase 5 acceptance: browser gets its own streams back
+- `tools/TurnRunner` — runs the TURN server for interop tests
 - `tools/DtlsProbe` — Phase 0 prototype: browser ⇄ ICE-lite ⇄ OpenSSL DTLS, opens one SRTP packet with the exported keys
 - `tests/BlueChat.Media.Dtls.Tests` — unit tests
 - `tests/phase0` — Playwright (Chromium, Firefox) against the probe
-- `tests/interop` — reference tools in Docker: Pion, aiortc, coturn, tshark, tc netem
+- `tests/interop` — reference tools in Docker: Pion, aiortc, coturn, tshark, tc netem; TURN interop (`run-turn.sh`)
+- `tests/BlueChat.*.Tests` — unit tests per library (vectors from RFCs, libsrtp, Pion; mutation fuzzing)
 
 ## Quick checks
 

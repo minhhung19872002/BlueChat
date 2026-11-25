@@ -33,3 +33,12 @@ Remote: https://github.com/minhhung19872002/BlueChat (branch `main`). Commit per
 - `tshark` cannot judge encrypted SRTP/SRTCP bodies; only STUN/DTLS and our own packets are checked for malformation.
 - Stop host-run `DtlsProbe` before rebuilding (it locks bin/): PowerShell
   `Get-CimInstance Win32_Process | ? CommandLine -match 'DtlsProbe' | % { Stop-Process -Id $_.ProcessId -Force }`.
+
+## Media (Phase 5)
+- Libraries: Sdp, Stun, Ice, Dtls, Srtp, Rtp (protocol, no I/O) → Transport (sockets) → SFU (Phase 6). Turn is separate.
+- Acceptance: `dotnet run --project tools/MediaLoopback` then `cd tests/phase0 && node loopback-browsers.mjs`
+  (`ONLY=firefox:tcp REPEAT=25` to repeat one case). Node counters: `GET /node`.
+- Docker Desktop's TCP port proxy occasionally drops a connect; Firefox does not retry ICE-TCP (BUG-006). Judge
+  ICE-TCP flakiness against a node run directly on the host before suspecting the code.
+- Independent references live in tests: libsrtp (Srtp), Pion (Rtp, Turn), coturn (Turn), browsers (Sdp, loopback).
+- `turnutils_uclient` picks random channel numbers 0x4000–0x7FFE: both 400 and a clean relay are correct (BUG-007).

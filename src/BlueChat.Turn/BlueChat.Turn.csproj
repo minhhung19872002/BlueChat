@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>BlueChat.Turn</RootNamespace>
+    <!-- CA5350/CA5351: TURN long-term credentials are MD5/HMAC-SHA1 and REST usernames HMAC-SHA1 by definition
+         (RFC 8489 §9.2.2, §14.5; draft-uberti-behave-turn-rest-00) -->
+    <NoWarn>$(NoWarn);CA5350;CA5351</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlueChat.Media.Stun\BlueChat.Media.Stun.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="BlueChat.Turn.Tests" />
+  </ItemGroup>
+</Project>

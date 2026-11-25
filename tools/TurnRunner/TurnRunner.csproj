@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Console host for BlueChat.Turn, used by the coturn interop rig (tests/interop/turn-compose.yml). -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BlueChat.Turn\BlueChat.Turn.csproj" />
+  </ItemGroup>
+</Project>

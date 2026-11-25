@@ -26,6 +26,23 @@ public class AnswerTests
     };
 
     [Theory]
+    [InlineData("firefox-max-bundle.sdp")]
+    [InlineData("chromium-max-bundle.sdp")]
+    public void Bundle_only_sections_with_port_zero_are_accepted_not_rejected(string file)
+    {
+        // RFC 9143 §7.5.3 / §7.3.1: with bundlePolicy "max-bundle" Firefox offers m=video with port 0 and
+        // a=bundle-only. That section is part of the BUNDLE group, not a rejected one.
+        var offer = SdpParser.Parse(Corpus.Read(file));
+        var answer = JsepAnswerer.CreateAnswer(offer, Options());
+
+        var video = answer.Media.Single(m => m.Kind == "video");
+        video.IsRejected.Should().BeFalse();
+        video.Port.Should().NotBe(0);
+        answer.BundleMids.Should().Contain(video.Mid!);
+        video.RtpMaps.Should().Contain(r => r.EncodingName == "VP8");
+    }
+
+    [Theory]
     [MemberData(nameof(Corpus.Files), MemberType = typeof(Corpus))]
     public void Answer_to_every_browser_offer_is_valid_and_is_written_for_the_browser_check(string file)
     {

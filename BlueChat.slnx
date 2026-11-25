@@ -6,9 +6,13 @@
     <Project Path="src/BlueChat.Media.Sdp/BlueChat.Media.Sdp.csproj" />
     <Project Path="src/BlueChat.Media.Srtp/BlueChat.Media.Srtp.csproj" />
     <Project Path="src/BlueChat.Media.Stun/BlueChat.Media.Stun.csproj" />
+    <Project Path="src/BlueChat.Media.Transport/BlueChat.Media.Transport.csproj" />
+    <Project Path="src/BlueChat.Turn/BlueChat.Turn.csproj" />
   </Folder>
   <Folder Name="/tools/">
     <Project Path="tools/DtlsProbe/DtlsProbe.csproj" />
+    <Project Path="tools/MediaLoopback/MediaLoopback.csproj" />
+    <Project Path="tools/TurnRunner/TurnRunner.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/BlueChat.Media.Dtls.Tests/BlueChat.Media.Dtls.Tests.csproj" />
@@ -17,5 +21,6 @@
     <Project Path="tests/BlueChat.Media.Sdp.Tests/BlueChat.Media.Sdp.Tests.csproj" />
     <Project Path="tests/BlueChat.Media.Srtp.Tests/BlueChat.Media.Srtp.Tests.csproj" />
     <Project Path="tests/BlueChat.Media.Stun.Tests/BlueChat.Media.Stun.Tests.csproj" />
+    <Project Path="tests/BlueChat.Turn.Tests/BlueChat.Turn.Tests.csproj" />
   </Folder>
 </Solution>

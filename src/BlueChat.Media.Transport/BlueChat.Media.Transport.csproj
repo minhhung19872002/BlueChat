@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>BlueChat.Media.Transport</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlueChat.Media.Dtls\BlueChat.Media.Dtls.csproj" />
+    <ProjectReference Include="..\BlueChat.Media.Ice\BlueChat.Media.Ice.csproj" />
+    <ProjectReference Include="..\BlueChat.Media.Srtp\BlueChat.Media.Srtp.csproj" />
+  </ItemGroup>
+</Project>

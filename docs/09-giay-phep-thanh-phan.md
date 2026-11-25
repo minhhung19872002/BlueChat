@@ -22,6 +22,10 @@ Mọi gói NuGet/npm và image chạy thật phải có trong bảng này trư�
 |---|---|---|
 | Playwright (npm) | 1.65.1 | Apache-2.0 |
 | Pion WebRTC (Go) | v4.2.29 | MIT |
+| Pion rtp / rtcp / interceptor (Go) | v1.10.6 / v1.2.20 / v0.1.51 | MIT |
+| Pion TURN (Go) | v4.1.4 | MIT |
+| pylibsrtp (libsrtp) | 1.1.0 | BSD-3-Clause |
+| Playwright image (WebKit trên Linux) | `mcr.microsoft.com/playwright:v1.65.1-noble` | Apache-2.0 |
 | aiortc (Python) | 1.16.0 | BSD-3-Clause |
 | coturn (Debian bookworm) | 4.6.1 | BSD-3-Clause |
 | tshark / Wireshark (Debian bookworm) | 4.0.17 | GPL-2.0 |

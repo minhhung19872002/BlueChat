@@ -29,3 +29,27 @@ container `tools`; gỡ bằng `tc qdisc del dev eth0 root`.
 | P0-07 | aiortc 1.16.0 ↔ nguyên mẫu | như P0-06 | mạng sạch và netem 10 %/150 ms | ✅ |
 | P0-08 | tshark chấm gói STUN/DTLS và gói máy chủ gửi | 0 gói hỏng | 20 gói, 0 hỏng | ✅ |
 | P0-09 | coturn `turnutils_uclient` | chạy, 0 % mất | 0 % | ✅ |
+
+## Phase 5 (thư viện media, làm trước Phase 1–4 theo đồng ý của chủ sản phẩm)
+
+Lệnh: `dotnet test BlueChat.slnx` (Windows: đặt `BC_OPENSSL_DIR`); vòng lặp: `dotnet run --project tools/MediaLoopback`
+rồi `cd tests/phase0 && node loopback-browsers.mjs` (`ONLY=firefox:tcp REPEAT=25` để lặp một kịch bản); TURN:
+`docker compose -f tests/interop/turn-compose.yml up -d && sh tests/interop/run-turn.sh`.
+
+| Mã | Kịch bản | Mong đợi | Kết quả | |
+|---|---|---|---|---|
+| P5-01 | STUN: vector RFC 5769 §2.1–2.4, RFC 8489 B.1 (errata 6268) | xác thực đúng; bộ ghi tái tạo §2.2 từng byte | 26 phép thử | ✅ |
+| P5-02 | STUN: 20 000 đột biến | không ném ngoại lệ, không xác thực nhầm | `Random_mutations…` | ✅ |
+| P5-03 | ICE-lite: đề cử, đề cử lại, 487, 420, consent 10 s/30 s, ICE restart, mux chỉ gắn địa chỉ qua kiểm có xác thực | như RFC 8445/7675 | 21 phép thử | ✅ |
+| P5-04 | SRTP/SRTCP: vector RFC 3711, 7714; ROC, cửa sổ chống phát lại; không cấp phát bộ nhớ | đúng vector; 0 byte cấp phát mỗi gói | 35 phép thử | ✅ |
+| P5-05 | SRTP ↔ libsrtp hai chiều | trùng từng byte; libsrtp mở 180/180 gói của mình | `LibsrtpInteropTests` | ✅ |
+| P5-06 | RTP/RTCP ↔ Pion hai chiều | 47 gói Pion đọc đúng; Pion đọc đúng 20 gói của mình | 84 phép thử | ✅ |
+| P5-07 | SDP: 17 offer thật (Chromium, Firefox, WebKit), đột biến, câu trả lời được trình duyệt nhận | parse, ghi lại y nguyên, answer hợp lệ | 153 phép thử; 15/15 answer được 3 trình duyệt nhận | ✅ |
+| P5-08 | SDP: Firefox max-bundle (`a=bundle-only`, port 0) | video không bị từ chối | `Bundle_only…` (BUG-005) | ✅ |
+| P5-09 | TURN: mọi phương thức, nhánh lỗi, chặn 41 địa chỉ, hạn mức, đồng hồ giả, socket thật UDP/TCP/TLS | như RFC 8656 | 105 phép thử | ✅ |
+| P5-10 | TURN ↔ coturn `turnutils_uclient` UDP/TCP/TLS | 0 % mất | 0 % cả ba | ✅ |
+| P5-11 | TURN ↔ Pion `turn/v4` ChannelData UDP/TCP/TLS | 200/200 | 200/200 cả ba | ✅ |
+| P5-12 | TURN: peer nội bộ/chính máy TURN/ngoài danh sách; sai secret | 403; không cấp phát | 403; từ chối | ✅ |
+| P5-13 | Vòng lặp Chromium 159: UDP, ICE-TCP, ICE restart (nút Windows và Linux) | nhận lại video ≥ 60 khung, âm ≥ 150 gói, đúng giao vận, video tiếp tục sau restart | qua cả 6 ô | ✅ |
+| P5-14 | Vòng lặp Firefox 159: như P5-13 | như P5-13 | Windows 28/28 TCP; Linux 51/55 TCP (4 lần do Docker Desktop, BUG-006) | ✅ |
+
