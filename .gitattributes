@@ -2,3 +2,4 @@
 *.png binary
 *.jpg binary
 *.dll binary
+*.sdp -text
