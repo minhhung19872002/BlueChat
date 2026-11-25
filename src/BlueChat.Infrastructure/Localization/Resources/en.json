@@ -1,0 +1,19 @@
+{
+  "error.unauthenticated": "Sign in with BlueID to continue.",
+  "error.forbidden": "You do not have permission to do this.",
+  "error.not_found": "The item was not found.",
+  "error.validation_failed": "Some values are not valid.",
+  "error.bad_request": "The request is not valid.",
+  "error.tenant_suspended": "Your organisation's BlueChat is suspended. Contact your administrator.",
+  "error.user_locked": "Your account is locked. Contact your administrator.",
+  "error.missing_tenant_claim": "Your BlueID sign-in does not name an organisation.",
+  "error.rate_limited": "Too many requests. Try again in a moment.",
+  "error.internal_error": "Something went wrong on our side. Try again.",
+  "error.settings_invalid": "These settings are not valid.",
+  "error.unknown_language": "This language is not available.",
+  "error.unknown_time_zone": "This time zone is not known.",
+  "error.role_last_admin": "The organisation must keep at least one administrator.",
+  "error.user_not_found": "No such user in your organisation.",
+  "audit.chain_valid": "The audit log is intact ({count} entries checked).",
+  "audit.chain_broken": "The audit log was altered at entry {id}."
+}

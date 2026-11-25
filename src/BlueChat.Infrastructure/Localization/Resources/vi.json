@@ -1,0 +1,19 @@
+{
+  "error.unauthenticated": "Hãy đăng nhập bằng BlueID để tiếp tục.",
+  "error.forbidden": "Bạn không có quyền làm việc này.",
+  "error.not_found": "Không tìm thấy mục này.",
+  "error.validation_failed": "Một số giá trị không hợp lệ.",
+  "error.bad_request": "Yêu cầu không hợp lệ.",
+  "error.tenant_suspended": "BlueChat của tổ chức bạn đang bị tạm ngừng. Hãy liên hệ quản trị viên.",
+  "error.user_locked": "Tài khoản của bạn đang bị khoá. Hãy liên hệ quản trị viên.",
+  "error.missing_tenant_claim": "Lần đăng nhập BlueID của bạn không cho biết thuộc tổ chức nào.",
+  "error.rate_limited": "Bạn gửi quá nhiều yêu cầu. Hãy thử lại sau ít phút.",
+  "error.internal_error": "Hệ thống gặp sự cố. Hãy thử lại.",
+  "error.settings_invalid": "Các cài đặt này không hợp lệ.",
+  "error.unknown_language": "Ngôn ngữ này chưa có.",
+  "error.unknown_time_zone": "Không nhận ra múi giờ này.",
+  "error.role_last_admin": "Tổ chức phải còn ít nhất một quản trị viên.",
+  "error.user_not_found": "Không có người dùng này trong tổ chức của bạn.",
+  "audit.chain_valid": "Nhật ký kiểm toán còn nguyên vẹn (đã kiểm {count} mục).",
+  "audit.chain_broken": "Nhật ký kiểm toán đã bị sửa tại mục {id}."
+}

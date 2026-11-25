@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- Test-only: an OIDC issuer standing in for BlueID in integration and E2E tests. Never referenced by shipped code. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>BlueChat.TestSupport</RootNamespace>
+    <NoWarn>$(NoWarn);CA1861;CA2000;CA1001;CA1707</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+  </ItemGroup>
+</Project>

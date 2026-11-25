@@ -217,3 +217,21 @@ SRTP để chấm cả RTP/RTCP sau giải mã.
 
 Kết luận Z4: khung kiểm thử media chạy; nguyên mẫu DTLS bắt tay được với **bốn** cài đặt độc lập (Chrome, Firefox,
 Pion, aiortc).
+
+---
+
+## Tình trạng 2026-11-25 (tạm dừng theo chủ sản phẩm)
+
+Chủ sản phẩm yêu cầu **tạm dừng đến khi BlueID xong**. Khi BlueID có `docs/05-hop-dong-tich-hop.md`: đối chiếu B1–B9 (mục Z1)
+rồi sửa `src/BlueChat.Infrastructure/Identity/BlueId.cs` (tên claim, audience) — đó là chỗ duy nhất phụ thuộc hợp đồng.
+
+| Phần | Tình trạng |
+|---|---|
+| Phase 0 | Z3–Z9 xong; Z1 chờ BlueID; Z2 chưa quyết |
+| Phase 5 (làm trước) | Xong: thư viện media + vòng lặp trình duyệt (docs/07) |
+| Phase 1 — backend | Xong, đã commit: Domain, Infrastructure (BC_*, DbContext + bộ lọc tenant đóng mặc định, xoá mềm, chặn ghi chéo tenant, nhật ký chuỗi băm, i18n en/vi, Serilog, health), Application (MediatR 12.5.0: /me, cài đặt, kiểm chuỗi nhật ký), Api (khuôn trả, RFC 7807 có code, RequirePermission/SelfGuarded + phép thử quét), migration `Initial` (unaccent, pg_trgm). Phép thử tích hợp 21/21, Gateway 9/9 |
+| Phase 1 — Gateway | Xong, đã commit: hai nút, mỗi sự kiện tới đúng mọi phiên của đúng người đúng một lần, cắt phiên theo lệnh, giới hạn kết nối |
+| Phase 1 — giao diện web (`web/`) | **Dở dang, chưa commit**: khung React đã dựng một phần, E2E chưa chạy |
+| Phase 1 — Docker Compose (`deploy/`, `scripts/`) | **Dở dang, chưa commit**: stack đã lên được postgres/valkey/garage/web/caddy; api/gateway chưa kiểm trong compose |
+| Phase 1 — nghiệm thu "đăng nhập được" | Chờ BlueID |
+

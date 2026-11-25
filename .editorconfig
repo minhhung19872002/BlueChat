@@ -1,0 +1,5 @@
+root = true
+
+# EF Core migrations are generated code: analyzers do not apply, and committed migrations are never edited (spec 13).
+[**/Persistence/Migrations/*.cs]
+generated_code = true

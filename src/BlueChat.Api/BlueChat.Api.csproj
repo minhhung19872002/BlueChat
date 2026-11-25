@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>BlueChat.Api</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlueChat.Application\BlueChat.Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="BlueChat.IntegrationTests" />
+  </ItemGroup>
+</Project>

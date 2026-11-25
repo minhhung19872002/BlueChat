@@ -1,5 +1,10 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/BlueChat.Api/BlueChat.Api.csproj" />
+    <Project Path="src/BlueChat.Application/BlueChat.Application.csproj" />
+    <Project Path="src/BlueChat.Domain/BlueChat.Domain.csproj" />
+    <Project Path="src/BlueChat.Gateway/BlueChat.Gateway.csproj" />
+    <Project Path="src/BlueChat.Infrastructure/BlueChat.Infrastructure.csproj" />
     <Project Path="src/BlueChat.Media.Dtls/BlueChat.Media.Dtls.csproj" />
     <Project Path="src/BlueChat.Media.Ice/BlueChat.Media.Ice.csproj" />
     <Project Path="src/BlueChat.Media.Rtp/BlueChat.Media.Rtp.csproj" />
@@ -15,6 +20,9 @@
     <Project Path="tools/TurnRunner/TurnRunner.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/BlueChat.Gateway.Tests/BlueChat.Gateway.Tests.csproj" />
+    <Project Path="tests/BlueChat.IntegrationTests/BlueChat.IntegrationTests.csproj" />
+    <Project Path="tests/BlueChat.TestSupport/BlueChat.TestSupport.csproj" />
     <Project Path="tests/BlueChat.Media.Dtls.Tests/BlueChat.Media.Dtls.Tests.csproj" />
     <Project Path="tests/BlueChat.Media.Ice.Tests/BlueChat.Media.Ice.Tests.csproj" />
     <Project Path="tests/BlueChat.Media.Rtp.Tests/BlueChat.Media.Rtp.Tests.csproj" />

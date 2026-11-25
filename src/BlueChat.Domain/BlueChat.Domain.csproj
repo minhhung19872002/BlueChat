@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>BlueChat.Domain</RootNamespace>
+  </PropertyGroup>
+</Project>

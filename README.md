@@ -9,12 +9,16 @@ Teams parity table: `docs/doi-chieu-teams.md`.
 | Phase | Content | Status |
 |---|---|---|
 | 0 | Test infrastructure and decisions (Z1–Z9) | Z3–Z9 done; Z1 waits for the separate BlueID service; Z2 (network) not decided by the owner yet |
-| 1–4 | Foundation, chat, teams/channels, activity/search/files | **waiting for BlueID** |
+| 1 | Foundation | **paused until BlueID is ready (owner, 2026-11-25)**. Done and tested: Domain/Infrastructure/Application/Api, PostgreSQL schema + migration, tenant filter, hash-chained audit log, en/vi server strings, BlueID integration point (`Infrastructure/Identity/BlueId.cs`), Gateway SignalR + Valkey (2 nodes, exactly-once per session). Not committed, unfinished: web shell (`web/`), Docker Compose (`deploy/`) |
+| 2–4 | Chat, teams/channels, activity/search/files | waiting for BlueID |
 | 5 | Media libraries: SDP, STUN/ICE-lite/ICE-TCP, DTLS-SRTP, RTP/RTCP, TURN — up to the browser loopback test | **done, ahead of Phase 1–4** with the owner's approval (2026-11-25). Chromium 159 and Firefox 159 receive their own audio/video back over UDP, ICE-TCP and across an ICE restart (docs/07). SFU and ticket-based signalling stay for Phase 6 (need BlueID) |
 | 6–14 | | not started |
 
 ## Layout
 
+- `src/BlueChat.Domain`, `src/BlueChat.Infrastructure`, `src/BlueChat.Application`, `src/BlueChat.Api` — backend (Clean Architecture + CQRS)
+- `src/BlueChat.Gateway` — SignalR `/hubs/events`, delivers user events from Valkey to every open session
+- `tests/BlueChat.IntegrationTests`, `tests/BlueChat.Gateway.Tests` — real PostgreSQL + Valkey (Testcontainers) and a test-only BlueID issuer (`tests/BlueChat.TestSupport`)
 - `src/BlueChat.Media.Sdp` — SDP parser/writer, ICE-lite JSEP answerer
 - `src/BlueChat.Media.Stun` — STUN codec
 - `src/BlueChat.Media.Ice` — ICE-lite, shared-port mux, ICE-TCP framing, RFC 7983 demux

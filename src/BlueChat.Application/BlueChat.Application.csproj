@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>BlueChat.Application</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlueChat.Infrastructure\BlueChat.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
