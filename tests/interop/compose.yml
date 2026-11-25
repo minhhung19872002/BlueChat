@@ -1,0 +1,30 @@
+# Interop rig (Phase 0 / Z4): the DTLS probe and the reference tools on one private network.
+#   docker compose -f tests/interop/compose.yml up -d --build
+#   sh tests/interop/run-z4.sh
+name: bluechat-interop
+networks:
+  interop:
+    ipam:
+      config:
+        - subnet: 10.78.0.0/24
+services:
+  probe:
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    working_dir: /w
+    volumes:
+      - ../..:/src:ro
+    command: >
+      sh -c "cp -r /src/. /w && rm -rf src/*/bin src/*/obj tools/*/bin tools/*/obj tests/*/bin tests/*/obj
+      && dotnet run --project tools/DtlsProbe -- --ip 10.78.0.10 --bind 0.0.0.0"
+    networks:
+      interop:
+        ipv4_address: 10.78.0.10
+  tools:
+    build:
+      context: .
+      dockerfile: tools.Dockerfile
+    image: bluechat/interop-tools:dev
+    cap_add: [NET_ADMIN, NET_RAW] # tc netem, tshark capture
+    networks:
+      interop:
+        ipv4_address: 10.78.0.20

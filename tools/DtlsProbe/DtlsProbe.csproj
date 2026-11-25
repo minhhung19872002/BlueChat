@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- Phase 0 / Z3 prototype: browser ⇄ OpenSSL DTLS-SRTP over a minimal ICE-lite path. Not shipped. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <!-- CA5350: STUN MESSAGE-INTEGRITY is HMAC-SHA1 by definition (RFC 8489 §14.5) -->
+    <NoWarn>$(NoWarn);CA5350</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BlueChat.Media.Dtls\BlueChat.Media.Dtls.csproj" />
+  </ItemGroup>
+</Project>

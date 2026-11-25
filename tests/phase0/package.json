@@ -1,0 +1,13 @@
+{
+  "name": "bluechat-phase0",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Phase 0 / Z3: real Chrome and Firefox against the OpenSSL DTLS prototype (tools/DtlsProbe).",
+  "scripts": {
+    "dtls": "node dtls-browsers.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.65.1"
+  }
+}

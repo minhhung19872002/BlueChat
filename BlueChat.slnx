@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BlueChat.Media.Dtls/BlueChat.Media.Dtls.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/DtlsProbe/DtlsProbe.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BlueChat.Media.Dtls.Tests/BlueChat.Media.Dtls.Tests.csproj" />
+  </Folder>
+</Solution>
