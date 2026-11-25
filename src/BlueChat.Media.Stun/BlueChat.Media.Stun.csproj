@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>BlueChat.Media.Stun</RootNamespace>
+    <!-- CA5350/CA5351: MESSAGE-INTEGRITY is HMAC-SHA1 and the long-term key is MD5 by definition (RFC 8489 §9.2.2, §14.5) -->
+    <NoWarn>$(NoWarn);CA5350;CA5351</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="BlueChat.Media.Stun.Tests" />
+  </ItemGroup>
+</Project>

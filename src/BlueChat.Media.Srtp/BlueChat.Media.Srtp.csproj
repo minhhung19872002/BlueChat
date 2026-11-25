@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>BlueChat.Media.Srtp</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- CA5350 (HMAC-SHA1) and CA5358 (ECB, used only as the counter-mode block function): mandated by RFC 3711 §4.2.1, §4.1.1 -->
+    <NoWarn>$(NoWarn);CA5350;CA5358</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="BlueChat.Media.Srtp.Tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlueChat.Media.Dtls\BlueChat.Media.Dtls.csproj" />
+  </ItemGroup>
+</Project>

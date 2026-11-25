@@ -1,11 +1,17 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/BlueChat.Media.Dtls/BlueChat.Media.Dtls.csproj" />
+    <Project Path="src/BlueChat.Media.Ice/BlueChat.Media.Ice.csproj" />
+    <Project Path="src/BlueChat.Media.Srtp/BlueChat.Media.Srtp.csproj" />
+    <Project Path="src/BlueChat.Media.Stun/BlueChat.Media.Stun.csproj" />
   </Folder>
   <Folder Name="/tools/">
     <Project Path="tools/DtlsProbe/DtlsProbe.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/BlueChat.Media.Dtls.Tests/BlueChat.Media.Dtls.Tests.csproj" />
+    <Project Path="tests/BlueChat.Media.Ice.Tests/BlueChat.Media.Ice.Tests.csproj" />
+    <Project Path="tests/BlueChat.Media.Srtp.Tests/BlueChat.Media.Srtp.Tests.csproj" />
+    <Project Path="tests/BlueChat.Media.Stun.Tests/BlueChat.Media.Stun.Tests.csproj" />
   </Folder>
 </Solution>
