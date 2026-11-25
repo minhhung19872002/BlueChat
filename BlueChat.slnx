@@ -3,6 +3,7 @@
     <Project Path="src/BlueChat.Media.Dtls/BlueChat.Media.Dtls.csproj" />
     <Project Path="src/BlueChat.Media.Ice/BlueChat.Media.Ice.csproj" />
     <Project Path="src/BlueChat.Media.Rtp/BlueChat.Media.Rtp.csproj" />
+    <Project Path="src/BlueChat.Media.Sdp/BlueChat.Media.Sdp.csproj" />
     <Project Path="src/BlueChat.Media.Srtp/BlueChat.Media.Srtp.csproj" />
     <Project Path="src/BlueChat.Media.Stun/BlueChat.Media.Stun.csproj" />
   </Folder>
@@ -13,6 +14,7 @@
     <Project Path="tests/BlueChat.Media.Dtls.Tests/BlueChat.Media.Dtls.Tests.csproj" />
     <Project Path="tests/BlueChat.Media.Ice.Tests/BlueChat.Media.Ice.Tests.csproj" />
     <Project Path="tests/BlueChat.Media.Rtp.Tests/BlueChat.Media.Rtp.Tests.csproj" />
+    <Project Path="tests/BlueChat.Media.Sdp.Tests/BlueChat.Media.Sdp.Tests.csproj" />
     <Project Path="tests/BlueChat.Media.Srtp.Tests/BlueChat.Media.Srtp.Tests.csproj" />
     <Project Path="tests/BlueChat.Media.Stun.Tests/BlueChat.Media.Stun.Tests.csproj" />
   </Folder>
