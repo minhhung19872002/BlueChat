@@ -29,8 +29,9 @@ BlueMail (`BlueMail.Identity`, OpenIddict, chung CSDL với BlueMail, chỉ có 
 **Quyết định (chủ sản phẩm, 2026-11-25).** **Không** dùng BlueID của BlueMail. Chủ sản phẩm viết một ứng dụng
 BlueID riêng; khi xong sẽ báo để BlueChat nối vào. BlueChat **không** dựng bản đăng nhập tạm (đặc tả 2.1).
 
-**Hệ quả.** Các phần không cần đăng nhập làm trước: Phase 0, và các thư viện media độc lập của Phase 5 (SDP, STUN/ICE,
-DTLS-SRTP, RTP/RTCP, TURN) vì chúng không phụ thuộc BlueID. Phase 1 (đăng nhập, mở ứng dụng) chờ BlueID.
+**Hệ quả.** Phase 1 (đăng nhập, mở ứng dụng) chờ BlueID. Đặc tả bắt làm tuần tự, không nhảy phase; trong lúc chờ,
+**đề xuất** làm trước các thư viện media độc lập của Phase 5 (SDP, STUN/ICE, DTLS-SRTP, RTP/RTCP, TURN) vì chúng không
+phụ thuộc BlueID — **[CẦN CHỦ SẢN PHẨM]** đồng ý trước khi bắt đầu.
 
 **BlueChat cần BlueID cung cấp** (để chủ sản phẩm đối chiếu khi viết BlueID):
 
